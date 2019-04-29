@@ -1,0 +1,72 @@
+/* Variables & mixins */
+
+// Divi breakpoints - ref: https://www.elegantthemes.com/blog/divi-resources/how-to-identify-divis-responsive-breakpoints-and-fine-tune-your-designs-with-media-queries
+$lg_desktop_min:    1406px;
+$standard_min:      1101px;
+$standard_max:      $lg_desktop_min - 1;
+$laptop_min:        981px;
+$laptop_max:        $standard_min - 1;
+$tablet_min:        769px;
+$tablet_max:        $laptop_min - 1;
+$sm_tablet_min:     320px;
+$sm_tablet_max:     $tablet_min - 1;
+$mobile_max:        480px;
+
+// Colours
+$pico-blue:         #3498db;
+$pico-yellow:       #f1c40f;
+$pico-red:          #e74c3c;
+
+// Others
+
+// Link style mixin
+@mixin pico-link( $col: white, $txtdec: none, $hcol: white, $htxtdec: none ) {
+    color: $col;
+    text-decoration: $txtdec;
+    &:link, &:visited {
+        color: $col;
+        text-decoration: $txtdec;
+    }
+    &:hover, &:focus {
+        color: $hcol;
+        text-decoration: $htxtdec;
+    }
+}
+
+// Background properties mixin - background-image not set
+@mixin pico-background( $sz: cover, $pos: center, $col: transparent, $rpt: no-repeat, $att: scroll ) {
+    background-size: $sz;
+    background-position: $pos;
+    background-color: $col;
+    background-repeat: $rpt;
+    background-attachment: $att;
+};
+
+/* Global, common overrides */
+@media (max-width: $tablet_max) {   // up to 980px
+    // Bigger dot navigation areas on tablets and phones
+    ul.et_pb_side_nav {
+        li.side_nav_item {
+            padding: 14px 7px;
+        }
+    }
+}   // up to 980px
+
+// Animations
+@keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-30px);
+    }
+
+	60% {
+        transform: translateY(-15px);
+    }
+}
