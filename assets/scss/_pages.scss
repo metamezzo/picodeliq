@@ -1,0 +1,14 @@
+@media only screen and (max-width: 980px) {
+    .et_pb_row_0 {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+
+ul.et_pb_side_nav {
+    li.side_nav_item {
+        &:first-child {
+            display: none;
+        }
+    }
+}
