@@ -5,10 +5,100 @@
     }
 }
 
+// Dot navigation overrides
 ul.et_pb_side_nav {
+    width: auto;
+    background-color: transparent;
+    padding: 0;
+
     li.side_nav_item {
+        background-color: transparentize(#000000, 0.75);
+        font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+        font-size: 95%;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 0;
+        border: 2px solid $pico-yellow;
+        border-radius: 19px 0 0 19px;
+        border-right-width: 0;
+        margin-bottom: 8px;
+        margin-top: 5px;
+
         &:first-child {
             display: none;
+        }
+
+        a {
+            width: auto;
+            height: auto;
+            background-color: transparent;
+            color: transparent;
+            text-indent: unset;
+            padding: 5px 15px;
+
+            &::before {
+                color: #ffffff;
+                transition: color 0.3s ease-in-out;
+            }
+
+            &.active {
+                background-color: transparent !important;
+                color: transparent !important;
+
+                &::before {
+                    color: $pico-blue;
+                }
+            }
+        }
+    }
+}
+
+#side_nav_item_id_1 {
+    &::before {
+        content: "Our Services";
+    }
+}
+
+#side_nav_item_id_2 {
+    &::before {
+        content: "Our Work";
+    }
+}
+
+#side_nav_item_id_3 {
+    &::before {
+        content: "Say Hello";
+    }
+}
+
+@media only screen and (max-height: 899.98px) {
+    ul.et_pb_side_nav {
+        top: 22.5%;
+    }
+}
+
+@media only screen and (max-width: $tablet-max) {
+    ul.et_pb_side_nav {
+        li.side_nav_item {
+            padding: 10px;
+            border-radius: 50%;
+            border-right-width: 2px;
+            margin-right: 3px;
+
+            a {
+                width: 7px;
+                height: 7px;
+                background-color: #ffffff;
+                text-indent: -9999px;
+                padding: 5px;
+                margin-right: 0;
+                transition: background-color 0.3s ease-in-out;
+
+                &.active {
+                    background-color: $pico-blue !important;
+                }
+            }
         }
     }
 }
