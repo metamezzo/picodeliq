@@ -52,6 +52,12 @@ $pico-red:          #e74c3c;
     }
 }   // up to 980px
 
+// Back to top button
+.et_pb_scroll_top.et-pb-icon {
+    border-radius: 50%;
+    background: transparentize(#000000, 0.75);
+}
+
 // Animations
 @keyframes bounce {
     0%,
