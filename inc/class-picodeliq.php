@@ -19,6 +19,7 @@ if ( ! class_exists( 'Picodeliq' ) ) :
 
             // Actions & filters
             add_action( 'after_setup_theme', array( $this, 'theme_setup' ) );
+            add_action( 'wp_default_scripts', array( $this, 'remove_jquery_migrate' ) );
             add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
             add_action( 'customize_register', array( $this, 'customize_register' ) );
 
@@ -35,6 +36,20 @@ if ( ! class_exists( 'Picodeliq' ) ) :
 
             load_child_theme_textdomain( 'picodeliq', get_stylesheet_directory() . '/languages' );
 
+        }
+
+        // Remove jQuery migrate
+        // ref: https://dotlayer.com/what-is-migrate-js-why-and-how-to-remove-jquery-migrate-from-wordpress/
+        public function remove_jquery_migrate($scripts) {
+            if ( !is_admin() && isset($scripts->registered['jquery']) ) {
+                $script = $scripts->registered['jquery'];
+                
+                if ( $script->deps ) { // Check whether the script has any dependencies
+                    $script->deps = array_diff($script->deps, array(
+                        'jquery-migrate'
+                    ));
+                }
+            }
         }
 
         // Enqueue scripts and styles
@@ -93,26 +108,27 @@ if ( ! class_exists( 'Picodeliq' ) ) :
                 )
             );
 
+            // Instagram field is not required since Divi Theme Options already has this field
             // PICODELIQ Instagram profile settings
-            $wp_customize->add_setting( 'instagram_url', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
-                array(
-                    'default'           => '#', //Default setting/value to save
-                    'type'              => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
-                    'capability'        => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
-                    'transport'         => 'refresh', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
-                    'sanitize_callback' => 'esc_url_raw',
-                )
-            );
+            // $wp_customize->add_setting( 'instagram_url',
+            //     array(
+            //         'default'           => '#',
+            //         'type'              => 'theme_mod',
+            //         'capability'        => 'edit_theme_options',
+            //         'transport'         => 'refresh',
+            //         'sanitize_callback' => 'esc_url_raw',
+            //     )
+            // );
 
             // PICODELIQ Instagram profile control
-            $wp_customize->add_control( 'instagram_url',
-                array(
-                    'label'     => __( 'Instagram profile', 'picodeliq' ),
-                    'section'   => 'theme_options',
-                    'settings'  => 'instagram_url',
-                    'type'      => 'text',
-                )
-            );
+            // $wp_customize->add_control( 'instagram_url',
+            //     array(
+            //         'label'     => __( 'Instagram profile', 'picodeliq' ),
+            //         'section'   => 'theme_options',
+            //         'settings'  => 'instagram_url',
+            //         'type'      => 'text',
+            //     )
+            // );
 
         }
 
