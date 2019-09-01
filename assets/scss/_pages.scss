@@ -25,7 +25,8 @@ ul.et_pb_side_nav {
         margin-bottom: 8px;
         margin-top: 5px;
 
-        &:first-child {
+        &:first-child,
+        &:last-child {
             display: none;
         }
 
