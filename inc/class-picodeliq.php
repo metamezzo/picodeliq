@@ -108,28 +108,6 @@ if ( ! class_exists( 'Picodeliq' ) ) :
                 )
             );
 
-            // Instagram field is not required since Divi Theme Options already has this field
-            // PICODELIQ Instagram profile settings
-            // $wp_customize->add_setting( 'instagram_url',
-            //     array(
-            //         'default'           => '#',
-            //         'type'              => 'theme_mod',
-            //         'capability'        => 'edit_theme_options',
-            //         'transport'         => 'refresh',
-            //         'sanitize_callback' => 'esc_url_raw',
-            //     )
-            // );
-
-            // PICODELIQ Instagram profile control
-            // $wp_customize->add_control( 'instagram_url',
-            //     array(
-            //         'label'     => __( 'Instagram profile', 'picodeliq' ),
-            //         'section'   => 'theme_options',
-            //         'settings'  => 'instagram_url',
-            //         'type'      => 'text',
-            //     )
-            // );
-
         }
 
         // Pre-footer section - ID == nnn
