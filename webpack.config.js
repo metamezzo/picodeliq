@@ -1,18 +1,18 @@
 const path = require('path');
 
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const CopyPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 
 const extractSass = new ExtractTextPlugin({
-  filename: "css/[name].css",
+  filename: 'css/[name].css',
   disable: false,
   allChunks: true
 });
 
-const cleanDest = new CleanWebpackPlugin(['dist']);
+const cleanDest = new CleanWebpackPlugin();
 
 const copyImages = new CopyPlugin([
   {
@@ -30,10 +30,10 @@ module.exports = {
     path: path.resolve( __dirname, 'dist' )
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /.js$/,
-        loaders: 'buble',
+        loader: 'buble-loader',
         include: path.join( __dirname, 'asset/js' )
       },
       {
@@ -67,7 +67,7 @@ module.exports = {
           }
         ]
       }
-    ] // loaders
+    ] // rules
   }, // module
   plugins: [
     cleanDest,
